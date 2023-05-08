@@ -1,0 +1,47 @@
+const { Router } = require('express')
+const express = require('express')
+const UserController = require('./controllers/UserController')
+const AnimalController = require('./controllers/AnimalController')
+const AnimalPerdidoController = require('./controllers/AnimalPerdidoController')
+const EspecieController = require('./controllers/EspecieController')
+const FormularioController = require('./controllers/FormularioController')
+const FotoAnimalController = require('./controllers/FotoAnimalController')
+const routes = express.Router()
+
+routes.get('/users', UserController.listar)
+routes.post('/users', UserController.cadastrar)
+routes.delete('/users/:id', UserController.deletar)
+routes.put('/users/:id', UserController.alterar)
+
+routes.post('/especie/:idEspecie/animal', AnimalController.cadastrar)
+routes.get('/animal', AnimalController.listar)
+routes.get('/animal/:id', AnimalController.listarUm)
+routes.delete('/animal/:id', AnimalController.deletar)
+routes.put('/animal/:id', AnimalController.alterar)
+
+routes.post('/animal/:idAnimal/formulario', FormularioController.cadastrar)
+routes.get('/formulario', FormularioController.listar)
+routes.get('/formulario/:id', FormularioController.listarUm)
+routes.delete('/animal/:idAnimal/formulario/:id', FormularioController.deletar)
+routes.put('/animal/:idAnimal/formulario/:id', FormularioController.alterar)
+
+routes.get('/especie', EspecieController.listar)
+routes.post('/especie', EspecieController.cadastrar)
+routes.delete('/especie/:id', EspecieController.deletar)
+routes.put('/especie/:id', EspecieController.alterar)
+
+routes.get('/animalperdido', AnimalPerdidoController.listar)
+routes.post('/animalperdido', AnimalPerdidoController.cadastrar)
+routes.delete('/animalperdido/:id', AnimalPerdidoController.deletar)
+routes.put('/animalperdido/:id', AnimalPerdidoController.alterar)
+
+routes.post('/fotoanimal', FotoAnimalController.cadastrar)
+routes.get('/fotoanimal', FotoAnimalController.listar)
+routes.delete('/animal/:idAnimal/fotoanimal/:id', FotoAnimalController.deletar)
+routes.put('/animal/:idAnimal/fotoanimal/:id', FotoAnimalController.alterar)
+
+routes.post('animalperdido/:idAnimalPerdido/fotoanimal', FotoAnimalController.cadastrar)
+routes.get('animalperdido/fotoanimal', FotoAnimalController.listar)
+routes.delete('/animalperdido/:idAnimalPerdido/fotoanimal/:id', FotoAnimalController.deletar)
+routes.put('/animalperdido/:idAnimalPerdido/fotoanimal/:id', FotoAnimalController.alterar)
+module.exports = routes
